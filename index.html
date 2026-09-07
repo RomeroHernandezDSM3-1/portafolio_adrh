@@ -75,6 +75,185 @@
   <!-- cierre de main -->
   </main>
 
+  <!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de contacto</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5;
+            color: #222;
+        }
+
+        main {
+            max-width: 500px;
+            margin: 30px auto;
+            padding: 30px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px #00000015;
+        }
+
+        h1 {
+            margin-top: 0;
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-top: 18px;
+            margin-bottom: 6px;
+            font-weight: bold;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #767676;
+            border-radius: 5px;
+            font: inherit;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        input:focus,
+        textarea:focus {
+            outline: 2px solid #005fcc;
+            outline-offset: 2px;
+        }
+
+        button {
+            width: 100%;
+            margin-top: 20px;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            background-color: #005fcc;
+            color: white;
+            font: inherit;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #004799;
+        }
+
+        button:focus-visible {
+            outline: 2px solid #222;
+            outline-offset: 3px;
+        }
+
+        small {
+            display: block;
+            margin-top: 5px;
+            color: #555;
+        }
+
+        #resultado {
+            color: #176232;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <h1>Contacto</h1>
+        <p>Completa el formulario. Todos los campos son obligatorios,
+           excepto el teléfono.</p>
+
+        <form id="formulario">
+            <label for="nombre">Nombre:</label>
+            <input
+                type="text"
+                id="nombre"
+                name="nombre"
+                placeholder="Escribe tu nombre"
+                autocomplete="name"
+                minlength="3"
+                maxlength="60"
+                required
+            >
+
+            <label for="correo">Correo electrónico:</label>
+            <input
+                type="email"
+                id="correo"
+                name="correo"
+                placeholder="ejemplo@correo.com"
+                autocomplete="email"
+                required
+            >
+
+            <label for="telefono">Teléfono (opcional):</label>
+            <input
+                type="tel"
+                id="telefono"
+                name="telefono"
+                placeholder="6621234567"
+                autocomplete="tel"
+                inputmode="numeric"
+                pattern="[0-9]{10}"
+                maxlength="10"
+                title="Escribe exactamente 10 dígitos sin espacios ni guiones"
+                aria-describedby="ayuda-telefono"
+            >
+            <small id="ayuda-telefono">
+                Escribe 10 dígitos sin espacios ni guiones.
+            </small>
+
+            <label for="mensaje">Mensaje:</label>
+            <textarea
+                id="mensaje"
+                name="mensaje"
+                rows="5"
+                placeholder="Escribe tu mensaje"
+                minlength="10"
+                maxlength="500"
+                aria-describedby="ayuda-mensaje"
+                required
+            ></textarea>
+            <small id="ayuda-mensaje">
+                Entre 10 y 500 caracteres.
+            </small>
+
+            <button type="submit">Validar formulario</button>
+        </form>
+
+        <p id="resultado" role="status"></p>
+    </main>
+
+    <script>
+        const formulario = document.getElementById("formulario");
+        const resultado = document.getElementById("resultado");
+
+        formulario.addEventListener("submit", function(evento) {
+            evento.preventDefault();
+
+            resultado.textContent =
+                "Datos válidos. Esta práctica no envía mensajes.";
+        });
+
+        formulario.addEventListener("input", function() {
+            resultado.textContent = "";
+        });
+    </script>
+</body>
+</html>
+
   <!-- footer con id="contacto": acá aterriza el tercer enlace; va una sola vez, al final -->
   <footer id="contacto">
     <h2>Contacto</h2>
